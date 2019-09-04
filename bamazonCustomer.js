@@ -63,8 +63,6 @@ function showItems() {
                         let query2 = connection.query(`UPDATE bamazon.products SET stock_quantity = ? WHERE item_id = ?`, [data[0].stock_quantity - response.amountBought, response.boughtItems], function(err, response) {
                             if (err) {
                                 throw err;
-                            } else {
-                                console.log("Worked!")
                             }
                         })
                     }
