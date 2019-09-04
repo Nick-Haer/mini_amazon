@@ -47,58 +47,96 @@ function manager() {
 
             switch (response.menuQuestion) {
                 case `View Products for Sale`:
-                console.table(res)
-                break;
+                    console.table(res)
+                    break;
                 case `View Low Inventory`:
-                for (let item of res) {
-                    if (item.stock_quantity < 5) {
-                        console.table(item)
+                    for (let item of res) {
+                        if (item.stock_quantity < 5) {
+                            console.table(item)
+                        }
+
+
                     }
 
-
-                }
-
-                break;
+                    break;
                 case `Add to Inventory`:
 
-                inquirer.prompt([{
+                    inquirer.prompt([{
 
-                    name:`addMore`,
-                    type: `list`,
-                    message: `Which item would you like to add more of to the inventory`,
-                    choices: function () {
-                        let choicesArr = [];
-                        for (let item of res) {
-                            choicesArr.push(item.product_name)
+                        name: `addMore`,
+                        type: `list`,
+                        message: `Which item would you like to add more of to the inventory`,
+                        choices: function () {
+                            let choicesArr = [];
+                            for (let item of res) {
+                                choicesArr.push(item.product_name)
+                            }
+                            return choicesArr;
                         }
-                        return choicesArr;
-                    }
-                },
-            
-                {
-                    name:`howMuch`,
-                    message: `"How much more would you like to add?`,
-                    type: `number`
-                }
-            
-            
-            ]).then((choice) => {
-                connection.query(`UPDATE bamazon.products SET stock_quantity = stock_quantity + ? WHERE product_name = ? `,[choice.howMuch, choice.addMore], function (error, data){
-                    if (error) {
-                        throw error;
+                    },
+
+                    {
+                        name: `howMuch`,
+                        message: `"How much more would you like to add?`,
+                        type: `input`
                     }
 
-                    console.log("Inventory Updated")
-                })
-                    
-                })
 
-                break;
+                    ]).then((choice) => {
+                        connection.query(`UPDATE bamazon.products SET stock_quantity = stock_quantity + ? WHERE product_name = ? `, [choice.howMuch, choice.addMore], function (error, data) {
+                            if (error) {
+                                throw error;
+                            }
+
+                            console.log("Inventory Updated")
+                        })
+
+                    })
+
+                    break;
                 case `Add New Product`:
 
+                    inquirer.prompt([
+                    {
+
+                        name: `addItem`,
+                        type: `input`,
+                        message: `Which item would you like to add to our stock selection?`,
+                    },
+                    {
+
+                        name: `addDept`,
+                        type: `input`,
+                        message: `Which department would you like to add this item too?`,
+                    },
+                    {
+
+                        name: `addPrice`,
+                        type: `input`,
+                        message: `How much should this item be sold for per unit?`,
+                    },
+
+                    {
+                        name: `inventoryCount`,
+                        message: `"What is the quantity of our initial stock`,
+                        type: `input`
+                    }
 
 
-                break;
+                    ]).then((choice) => {
+                        connection.query(`INSERT INTO bamazon.products (product_name, department_name, price, stock_quantity)
+                        VALUES(?, ?, ?, ?)`, [choice.addItem, choice.addDept, choice.addPrice, choice.inventoryCount], function (error, data) {
+                            if (error) {
+                                throw error;
+                            }
+
+                            console.log("New Item Added")
+                        })
+
+                    })
+
+
+                    break;
 
                 default:
                     console.log("Please pick a valid option")
