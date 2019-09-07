@@ -61,6 +61,7 @@ function manager() {
                     break;
                 case `Add to Inventory`:
 
+
                     inquirer.prompt([{
 
                         name: `addMore`,
@@ -154,3 +155,7 @@ function manager() {
 
 
 manager()
+
+function addItem () {
+    
+}
