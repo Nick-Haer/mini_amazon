@@ -26,6 +26,10 @@ MYSQL npm package
 giphy gif capture
 
 
+Find the code for this project here.
+
+https://github.com/Nick-Haer/mini_amazon
+
 
 Find screenshots of the app working here, split into each role the user can adopt:
 
