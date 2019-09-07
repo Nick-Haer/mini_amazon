@@ -32,18 +32,41 @@ Find screenshots of the app working here, split into each role the user can adop
 
 ![Alt Text](Gifs/customer_first.gif)
 
+
+
+
 ![Alt Text](Gifs/cusotmer_two.gif)
+
+
+
+---------------------------------
 
 
 ![Alt Text](Gifs/manager__one.gif)
 
+
+
+
 ![Alt Text](Gifs/manager_two.gif)
 
+
+
+
 ![Alt Text](Gifs/manager_three.gif)
+
+
+
 
 ![Alt Text](Gifs/manager_four.gif)
 
 
+
+----------------------------------
+
+
 ![Alt Text](Gifs/supervisor_one.gif)
+
+
+
 
 ![Alt Text](Gifs/supervisor_two.gif)
