@@ -18,12 +18,12 @@ This was my first time using SQL, and I spent several hours learning how to work
 
 Technologies Used:
 
-JavaScript
-SQL
-Node
-Inquirer
-MYSQL npm package
-giphy gif capture
+*JavaScript
+*SQL
+*Node
+*Inquirer
+*MYSQL npm package
+*giphy gif capture
 
 
 
