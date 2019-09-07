@@ -1,5 +1,5 @@
 # mini_amazon
-A node application made to practice incorporating a sql database into a wen app.
+A node application made to practice incorporating a sql database into a web app.
 
 This application is made in Node, and is connected to a a MySQL database with mysql tools.
 
@@ -18,12 +18,12 @@ This was my first time using SQL, and I spent several hours learning how to work
 
 Technologies Used:
 
-JavaScript
-SQL
-Node
-Inquirer
-MYSQL npm package
-giphy gif capture
+*JavaScript
+*SQL
+*Node
+*Inquirer
+*MYSQL npm package
+*giphy gif capture
 
 
 Find the code for this project here.
@@ -36,18 +36,41 @@ Find screenshots of the app working here, split into each role the user can adop
 
 ![Alt Text](Gifs/customer_first.gif)
 
+
+
+
 ![Alt Text](Gifs/cusotmer_two.gif)
+
+
+
+---------------------------------
 
 
 ![Alt Text](Gifs/manager__one.gif)
 
+
+
+
 ![Alt Text](Gifs/manager_two.gif)
 
+
+
+
 ![Alt Text](Gifs/manager_three.gif)
+
+
+
 
 ![Alt Text](Gifs/manager_four.gif)
 
 
+
+----------------------------------
+
+
 ![Alt Text](Gifs/supervisor_one.gif)
+
+
+
 
 ![Alt Text](Gifs/supervisor_two.gif)
