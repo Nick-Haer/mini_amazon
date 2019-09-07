@@ -71,6 +71,7 @@ function manager() {
                 case `Add to Inventory`:
 
 //this section promts the user, asking them the details needed to add more of an item, though not a unique new item, to the database.
+
                     inquirer.prompt([{
 
                         name: `addMore`,
@@ -168,6 +169,3 @@ function manager() {
 
 manager()
 
-function addItem () {
-
-}
