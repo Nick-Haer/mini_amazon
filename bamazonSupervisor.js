@@ -35,17 +35,23 @@ function supervisor () {
 //if the user choices deptCheck, a query is made to check all relevant information. A case statement is used to determine if the current sales exceed overhead costs, and then to phrase either the profits or loss as a profit or loss.
 
         if (response.deptCheck === `View product sales by department`) {
-            let aQuery =`SELECT departments.department_id, departments.department_name, overhead_costs, SUM(product_sales) AS product_sales, case 
-            WHEN overhead_costs - product_sales > 0 
-            THEN CONCAT("No profits yet. The total loss is ", overhead_costs - SUM(product_sales), ".")
-            ELSE SUM(product_sales) - overhead_costs
+            let aQuery =`SELECT departments.department_id, departments.department_name, overhead_costs, IFNULL((SUM(product_sales) ), 0) AS product_sales, case 
+            WHEN SUM(product_sales) IS NULL 
+            THEN "This department hasn't sold anything yet"
+            WHEN overhead_costs - SUM(product_sales) > 0 
+            THEN CONCAT("No profits yet. The total loss is $", overhead_costs - SUM(product_sales))
+            ELSE CONCAT("This department's total profits are $", (SUM(product_sales) - overhead_costs))
             END AS total_profit
             FROM bamazon.departments
-            JOIN bamazon.products
+            LEFT JOIN bamazon.products
             ON departments.department_name = products.department_name
             GROUP BY departments.department_name;`
             connection.query(aQuery, function(err, data) {
+                if (err) {
+                    throw err;
+                }
                 console.table(data)
+                connection.end()
             })
         } else {
 //this section gives the user a chance to add a department and its associated overhead costs. to add items to the department, the user must use bamazonManager
@@ -66,6 +72,7 @@ function supervisor () {
                     throw err;
                 }
                 console.log(`Succesfully added departmentt ${answers.deptAddName} with an overhead cost of ${answers.deptAddOverhead}`)
+                connection.end()
             })
 
         })

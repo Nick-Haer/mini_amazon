@@ -55,6 +55,7 @@ function manager() {
             switch (response.menuQuestion) {
                 case `View Products for Sale`:
                     console.table(res)
+                    connection.end()
                     break;
 
 
@@ -66,8 +67,11 @@ function manager() {
 
 
                     }
+                    connection.end()
 
                     break;
+
+
                 case `Add to Inventory`:
 
 //this section promts the user, asking them the details needed to add more of an item, though not a unique new item, to the database.
@@ -100,6 +104,7 @@ function manager() {
                             }
 
                             console.log("Inventory Updated")
+                            connection.end()
                         })
 
                     })
@@ -145,6 +150,7 @@ function manager() {
                             }
 
                             console.log("New Item Added")
+                            connection.end()
                         })
 
                     })

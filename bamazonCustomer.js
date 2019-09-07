@@ -68,10 +68,12 @@ function showItems() {
                             if (err) {
                                 throw err;
                             }
+                            connection.end()
                         })
                     }
                     else {
                         console.log("sorry, We don't have that many in stock")
+                        connection.end()
                     }
                 }
             })
