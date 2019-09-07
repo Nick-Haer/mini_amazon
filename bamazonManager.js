@@ -17,6 +17,8 @@ const connection = mysql.createConnection({
 
 })
 
+//initializing and checking for errors from the sql connection
+
 connection.connect((err) => {
     if (err) {
         throw err;
@@ -29,7 +31,7 @@ connection.connect((err) => {
 
 function manager() {
 
-
+//an initial query that will provide information for the first two menu questions
 
     let query = connection.query(`SELECT * FROM bamazon.products`, function (err, res) {
         if (err) {
@@ -45,10 +47,17 @@ function manager() {
         }).then((response) => {
             console.log(response.menuQuestion)
 
+
+//the start of a switch case which will perform different queries dependent on user choice
+
+
+
             switch (response.menuQuestion) {
                 case `View Products for Sale`:
                     console.table(res)
                     break;
+
+
                 case `View Low Inventory`:
                     for (let item of res) {
                         if (item.stock_quantity < 5) {
@@ -61,7 +70,7 @@ function manager() {
                     break;
                 case `Add to Inventory`:
 
-
+//this section promts the user, asking them the details needed to add more of an item, though not a unique new item, to the database.
                     inquirer.prompt([{
 
                         name: `addMore`,
@@ -95,6 +104,9 @@ function manager() {
                     })
 
                     break;
+
+
+//this case allows the user to add a new item to the database, and prompts them for the necessary information
                 case `Add New Product`:
 
                     inquirer.prompt([
@@ -157,5 +169,5 @@ function manager() {
 manager()
 
 function addItem () {
-    
+
 }

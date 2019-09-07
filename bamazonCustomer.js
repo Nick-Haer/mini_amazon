@@ -30,6 +30,8 @@ connection.connect((err) => {
 
 function showItems() {
     let query = connection.query(`SELECT * FROM bamazon.products`, function (err, res) {
+
+    //the user is show a table of the products they can purchase, which they will use to provide the information below when prompted.
         console.table(res)
 
         inquirer.prompt([
@@ -48,14 +50,16 @@ function showItems() {
 
 
         ]).then(response => {
-            console.log(response)
-            console.log(response.boughtItem)
+
+            //.this query checks if there is enough of the item in stock to meet the users request
             let query1 = connection.query(`SELECT * FROM bamazon.products WHERE item_id = ?`, [response.boughtItem], function(err, data) {
                 if (err) {
                     throw err;
                 } else {
-                    console.log(data)
-                    console.log(data[0].stock_quantity)
+
+
+                    //this section confirms the users purchase, and then updates the stock to be the right quantity. It then adds the correct amount to the product sales column
+
 
                     if (data[0].stock_quantity >= response.amountBought) {
                         console.log(`Congratulations on your purchase of ${response.amountBought} ${data[0].product_name} !`)

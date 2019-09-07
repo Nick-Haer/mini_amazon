@@ -21,6 +21,7 @@ connection.connect((err) => {
     } 
 })
 
+//the supervisor function contians the logic used in this module
 function supervisor () {
     inquirer.prompt (
         {
@@ -30,6 +31,9 @@ function supervisor () {
             choices: [`View product sales by department`, `Create New Department`]
         }
     ).then((response) => {
+
+//if the user choices deptCheck, a query is made to check all relevant information. A case statement is used to determine if the current sales exceed overhead costs, and then to phrase either the profits or loss as a profit or loss.
+
         if (response.deptCheck === `View product sales by department`) {
             let aQuery =`SELECT departments.department_id, departments.department_name, overhead_costs, SUM(product_sales) AS product_sales, case 
             WHEN overhead_costs - product_sales > 0 
@@ -44,6 +48,7 @@ function supervisor () {
                 console.table(data)
             })
         } else {
+//this section gives the user a chance to add a department and its associated overhead costs. to add items to the department, the user must use bamazonManager
             inquirer.prompt([
             {
                 name: `deptAddName`,
