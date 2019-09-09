@@ -19,6 +19,8 @@ connection.connect((err) => {
     if (err) {
         throw err;
     } 
+
+    supervisor()
 })
 
 //the supervisor function contians the logic used in this module
@@ -81,4 +83,4 @@ function supervisor () {
     } )
 }
 
-supervisor()
+

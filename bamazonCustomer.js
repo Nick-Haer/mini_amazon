@@ -24,6 +24,7 @@ connection.connect((err) => {
     }
     else {
         console.log("connected correctly")
+        showItems();
     }
 })
 
@@ -85,5 +86,5 @@ function showItems() {
 
 
 
-showItems();
+
 
